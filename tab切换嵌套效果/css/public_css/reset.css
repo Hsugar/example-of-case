@@ -1,0 +1,87 @@
+body, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend, input, textarea, select,
+div,span,li,a {
+    margin: 0;
+    padding: 0;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    font-size: 14px;
+    width: 100%;
+    height: 100%;
+}
+
+input, textarea, button, a {
+    outline: 0
+}
+
+a img, fieldset {
+    border: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none
+}
+
+img {
+    border: 0;
+    vertical-align: top;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+p {
+    word-wrap: break-word
+}
+/* 超出隐藏 一行，两行，三行，省略号显示start */
+.overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.overflowOne {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+.overflowTwo {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.overflowThree {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+  /* 超出隐藏 end */
+  
+
+ /* 清除浮动 */
+.clearfix:after{
+	height: 0;
+	font-size: 0;
+	clear: both;
+	display: block;
+	visibility: hidden;
+	content: '';
+}
+.float_left{
+	float:left;
+}
+.float_right{
+	float:right;
+}

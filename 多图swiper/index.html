@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/carousel.css">
+    <style>
+        #banner{
+            width:1000px;
+        }
+    </style>
+    <title>轮播</title>
+</head>
+<body>
+    <div class='container'>
+        <div id='banner'></div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src='./js/carousel.js'></script>
+    <script>
+        window.onload = function(){
+            var banner = new Carousel();
+            //图片地址数组。不要少于三张
+            var imgSrcDate = ["./public/img/a1.png","./public/img/a2.png","./public/img/a3.png","./public/img/a4.png","./public/img/a5.png","./public/img/a6.png"];
+            banner.init({
+                container:"#banner",
+                datas:imgSrcDate,
+                autoplaySpeed:5000,
+                autoplay:false
+            });
+        }
+    </script>
+</body>
+</html>
