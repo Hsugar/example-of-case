@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="search.css">
+  <script src="jquery-1.8.3.min.js"></script>
+  <title>小程序商城</title>
+</head>
+<body>
+<div class="headerTitle f28 c333 searchBox clear">
+  <div class="searchBox-left floatLeft clear">
+    <button class="bgSprites sprit_searchSmall floatLeft"></button>
+    <input type="text" class="inputVal">
+    <button class="bgSprites sprit_closeGray floatRight"></button>
+  </div>
+  <button class="searchBox-cancleBtn c07 floatRight">搜索</button>
+</div>
+<ul class="simplefilter overflowX f32 c999 flex spaceBetween hide">
+  <li class="active flex1" onclick="tabBar(this)">小程序</li>
+  <li class="flex1" onclick="tabBar(this)">文章</li>
+</ul>
+
+<div class="searchleList">
+  <!--搜索记录及热搜 start-->
+  <div class="searchLabel">
+    <div class="searchRecord">
+      <div class="f24 cB7 clear searchNew">
+        <span class="floatLeft">最近搜索</span> <span class="floatRight" id="clearData">清除</span>
+        <button class="bgSprites sprit_searchWhite floatRight" id="btnDel"></button>
+      </div>
+      <ul class="clear">
+        <!--<li class="f28 c666">记录1记录</li>-->
+      </ul>
+    </div>
+
+    <ul class="clear">
+      <div class="f24 cB7 searchNew">
+        <span>热门搜索</span>
+        <button class="floatRight f24 cB7">
+          <span class="bgSprites sprit_searchChange floatLeft"></span>
+          换一批
+        </button>
+      </div>
+      <li class="f28 c666">记录1记录</li>
+      <li class="f28 c666">记录2</li>
+      <li class="f28 c666">记录3</li>
+      <li class="f28 c666">记录3</li>
+      <li class="f28 c666">记录3</li>
+      <li class="f28 c666">记录3</li>
+      <li class="f28 c666">记录3</li>
+    </ul>
+  </div>
+  <!--搜索记录及热搜 end-->
+</div>
+<script>
+  document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+  $(function(){
+    saveData();
+    upData();
+    clearkey();
+    searchKey();
+  })
+
+  // 存数据
+  function saveData(){
+    var kwdCacheKey = 'h_kwd_list';     //定义数据存储对象名
+
+    $('.searchBox-cancleBtn').on('click', function(){
+      var currentKwd = $('.inputVal').val(),     //搜索内容
+          currentKwdKey = 'k_'+currentKwd,        //当前搜索值对应的键值
+          currentKwdList = {},                    //创建json对象
+          kwdStr = localStorage.getItem(kwdCacheKey);     //获取历史搜索内容（字符串）
+      if(kwdStr !== null){
+        var kwdList = JSON.parse(kwdStr);       //将历史搜索内容转化为对象
+      }
+
+      currentKwdList[currentKwdKey] = currentKwd; //将当前输入关键字动态加入新创建json对象中
+
+      if(kwdList == undefined){   //如果不存在历史搜索内容，直接将当前搜索内容转化为字符串
+        var kwdTxt = JSON.stringify(currentKwdList);
+      }else{
+        //合并对象（当前搜索内 和 历史 搜索内容）
+        var kwdTxtObj = mergeToRepeat(currentKwdList,kwdList);
+        //转化为序列化json字符串格式
+        kwdTxt = JSON.stringify(kwdTxtObj);
+      }
+      localStorage.setItem(kwdCacheKey, kwdTxt);  //存入localStorage
+    })
+
+  }
+
+  //取数据
+  function upData(){  
+    var kwdTxt = window.localStorage.h_kwd_list ? window.localStorage.h_kwd_list : undefined;
+    if(kwdTxt !== undefined){
+      kwdTxtObj = JSON.parse(kwdTxt);
+      //console.log(kwdTxtObj);
+
+      for(var attr in kwdTxtObj){ //遍历对象
+        var item = '<li class=\'f28 c666\'>'+kwdTxtObj[attr]+'</li>';
+        $('.searchRecord ul').append(item);
+      }
+    }
+  }
+
+  function clearkey(){
+    //清空历史记录 并刷新页面
+    $('#clearData').on('click', function(){
+      //localStorage.clear();   //删除所有localStorage的值
+      localStorage.removeItem('h_kwd_list'); //删除h_kwd_list这个键值的里面所有的值
+      location.reload();
+    })
+  }
+
+  //直接用历史记录查询
+  function searchKey(){  
+    $('.searchRecord li').on('click', function(){
+      $('.inputVal').val($(this).text());
+    })
+  }
+
+  //遍历两个对象合成一个并将两个对象中重复的键值的值去掉前一个
+  function mergeToRepeat(json1,json2){   
+    var resJson={};
+    for(var i in json1){
+      resJson[i]=json1[i];
+    }
+    for (var i in json2) {
+      resJson[i]=json2[i];
+    };
+    return resJson;
+  }
+  // 清空搜索框文字
+  $('.sprit_closeGray').click(function () {
+    $('.inputVal').val("");
+  })
+</script>
+
+
+
+<!--  以下方案有bug  -->
+<!--<script>
+    $(document).ready(function () {
+        //tab切换
+        $('.simplefilter li').click(function () {
+            var indexx = $(this).index();
+            tabBar();
+            $('.searchleList ul').eq(indexx).show().siblings().hide();
+        })
+        //初始化判断是否有搜索记录
+        searchList();
+    })
+
+    //点击搜索存值
+    function search() {
+        var inputVal = $('.inputVal').val();
+        var leg =  $('.searchRecord ul li').length;
+        if(inputVal != ''){
+            //先判断搜索记录长度是否是第一条，先追加并清空；
+            if(leg == 0){
+                $('.searchRecord ul').prepend("<li class=\'f28 c666\'>"+$.trim(inputVal)+"</li>");
+                $('.inputVal').val("")
+            }
+            //然后循环搜索关键词是否已存在于搜索记录
+            var i
+            for(i = 0; i <leg; i ++){
+                var text = $('.searchRecord ul li').eq(i).text();
+                console.log(i)
+                console.log(inputVal,222,text)
+                if(inputVal==text){
+                    alert("该内容已添加");
+                    $('.inputVal').val("")
+                }else{
+                    $('.searchRecord ul').prepend("<li class=\'f28 c666\'>"+$.trim(inputVal)+"</li>");
+                    $('.inputVal').val("")
+                }
+                return ;
+            }
+            searchList();
+        return ;
+        }else{
+            alert("请输入关键词");
+        }
+
+    }
+
+    //判断是否有搜索记录
+    function searchList() {
+        if($(".searchRecord ul:has(li)").length==0 ){
+            $('.searchRecord').hide();
+        }else{
+            $('.searchRecord').show();
+        }
+    }
+</script>-->
+</body>
+</html>

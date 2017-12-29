@@ -1,0 +1,174 @@
+/*搜索框 start*/
+.searchBox{
+    padding: 0.14rem 0.3rem;
+    text-align: left;
+}
+.searchBox-left{
+    background: #F0F0F0;
+    border-radius: 0.3rem;
+    width: 6.08rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    overflow: hidden;
+}
+.searchBox-left input{
+    width: 4.6rem;
+    padding: 0 0.1rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    border: none;
+    background: #F0F0F0;
+}
+.searchBox-cancleBtn{
+    background: none;
+    line-height: 0.6rem;
+}
+.sprit_searchSmall{
+    padding: 0.1rem 0 0 0.1rem;
+    height: 0.6rem;
+    margin-left: 0.1rem;
+}
+.sprit_closeGray{
+    margin: 0.15rem 0.15rem 0 0.15rem;
+}
+/*搜索框 end*/
+/*tab切换 start*/
+.simplefilter{
+    margin:0;
+    padding: 0;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+.simplefilter li {
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+    padding: 0.1rem 0;
+    height: 0.76rem;
+    line-height: 0.56rem;
+    margin: 0 1rem;
+}
+.simplefilter li:hover{
+    color: #333;
+}
+.simplefilter li.active {
+    border-bottom: 0.04rem solid #07BB93;
+    color: #333;
+}
+/*tab切换 end*/
+
+/*文章列表 start*/
+.img_text_item{
+    padding: .3rem 0;
+    margin: 0 0.3rem;
+    border-bottom: 0.01rem solid #E7E7E7;
+    position: relative;
+}
+.img{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.06rem;
+    margin-right: .2rem;
+}
+.detail{
+    margin-top: .88rem;
+    position: absolute;
+    bottom: 0.3rem;
+    width: 100%;
+    padding-left: 2.2rem;
+}
+.sprit_number{
+    margin-right: .07rem;
+    height: 0.3rem;
+    background-position: -264px -65px;
+}
+/*文章列表 end*/
+
+/*小程序 start*/
+.indexList{
+    padding: 0 0.3rem;
+    width: 100%;
+    margin: 0.3rem 0;
+}
+.indexList img{
+    border-radius: 0.18rem;
+}
+.indexList li{
+    border-radius: 0.18rem;
+    overflow: auto;
+    margin-bottom: 0.3rem;
+}
+.indexList-left{
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.indexList-center{
+    width: 100%;
+    padding:0 1.6rem 0 1.4rem;
+    margin-top: 0.15rem;
+    line-height: 1.6;
+}
+.indexList a{
+    display: block;
+}
+.indexList-right{
+    margin-top:0.33rem;
+}
+.blueColorB{
+    width: 1.4rem;
+    height: 0.54rem;
+    line-height: 0.54rem;
+    color: #07BB93;
+    border:1px solid #07BB93;
+    border-radius: 0.06rem;
+    display: block;
+    text-align: center;
+    background: none;
+}
+.indexList-line{
+    border-top:1px solid #E9E9E9;
+    display: block;
+    background: none;
+    margin: 0.5rem 0 0 1.4rem;
+}
+/*小程序 end*/
+
+/*无搜索结果 start*/
+.searchNo img{
+    width: 3.25rem;
+    height: auto;
+    display: block;
+    margin: 1.8rem auto 1rem auto;
+}
+/*无搜索结果 end*/
+
+/*搜索记录及热搜 start*/
+.searchLabel{
+    padding: 0.3rem;
+}
+.searchLabel ul{
+    margin-bottom: 0.2rem;
+}
+.searchNew{
+    margin-bottom: 0.3rem;
+}
+.searchNew button{
+    background: none;
+}
+.sprit_searchChange{
+    margin: 0.03rem 0.03rem 0 0;
+}
+.searchLabel li{
+    float: left;
+    height: 0.64rem;
+    line-height: 0.64rem;
+    padding: 0 0.28rem;
+    border-radius: 0.06rem;
+    margin: 0 0.2rem 0.2rem 0;
+    background: #F7F7F7 ;
+}
+/*搜索记录及热搜 end*/
+.hide{
+    display: none;
+}
